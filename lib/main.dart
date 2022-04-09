@@ -1,3 +1,4 @@
+// import 'dart:html';
 import 'package:flutter/material.dart';
 
 
@@ -29,12 +30,28 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
+class ResetButton extends ElevatedButton {
+  const ResetButton({Key? key, required VoidCallback? callback})
+  : super(key: key, 
+      onPressed: callback, 
+      child: const Text(
+      "Reset"
+    )
+  );
+}
+
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
   void _incrementCounter() {
     setState(() {
       _counter++;
+    });
+  }
+
+  void _resetCounter() {
+    setState(() {
+      _counter = 0;
     });
   }
 
@@ -55,6 +72,7 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headline4,
             ),
+            ResetButton(callback: _resetCounter),
           ],
         ),
       ),
