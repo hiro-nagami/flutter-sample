@@ -1,6 +1,8 @@
 // import 'dart:html';
 import 'package:flutter/material.dart';
-
+// import 'package:todo/component/grid.dart';
+import 'package:todo/component/list.dart';
+import 'package:todo/models/task.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,75 +14,43 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: TodoListView());
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
-
-  final String title;
-
+// ignore: use_key_in_widget_constructors
+class TodoListView extends StatefulWidget {
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<StatefulWidget> createState() => TodoList();
 }
 
-class ResetButton extends ElevatedButton {
-  const ResetButton({Key? key, required VoidCallback? callback})
-  : super(key: key, 
-      onPressed: callback, 
-      child: const Text(
-      "Reset"
-    )
-  );
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  void _resetCounter() {
-    setState(() {
-      _counter = 0;
-    });
-  }
+class TodoList extends State<TodoListView> {
+  List<Task> tasks = [];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: const Text("タスクリスト"),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-            ResetButton(callback: _resetCounter),
-          ],
-        ),
-      ),
+      body: CountryList(tasks),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
+        onPressed: (() {
+          addTask("New task", "This task is new", false);
+        }),
+        tooltip: 'Add Task',
         child: const Icon(Icons.add),
       ),
     );
+  }
+
+  void addTask(String title, String content, bool isDone) {
+    setState(() {
+      tasks.add(Task(title, content, isDone));
+    });
   }
 }
