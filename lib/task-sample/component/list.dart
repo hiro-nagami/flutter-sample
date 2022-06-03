@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:todo/models/task.dart';
+import 'package:todo/task-sample/models/task.dart';
 
-class CountryList extends StatelessWidget {
-  const CountryList(this.tasks, {Key? key}) : super(key: key);
+class TaskList extends StatelessWidget {
+  const TaskList(this.tasks, {Key? key}) : super(key: key);
 
   final List<Task> tasks;
 
