@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:todo/task-sample/component/list.dart';
 import 'package:todo/task-sample/models/task.dart';
 
-class TaskListView extends StatefulWidget {
-  const TaskListView({Key? key}) : super(key: key);
+class TaskSample extends StatefulWidget {
+  const TaskSample({Key? key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => TaskListState();
 }
 
-class TaskListState extends State<TaskListView> {
+class TaskListState extends State<TaskSample> {
   List<Task> tasks = [];
 
   @override
