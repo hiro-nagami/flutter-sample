@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todo/task-sample/component/list.dart';
 import 'package:todo/task-sample/models/task.dart';
+import 'package:todo/task-sample/pages/createTaskView/index.dart';
 
 class TaskSample extends StatefulWidget {
   const TaskSample({Key? key}) : super(key: key);
@@ -20,18 +21,20 @@ class TaskListState extends State<TaskSample> {
       ),
       body: TaskList(tasks),
       floatingActionButton: FloatingActionButton(
-        onPressed: (() {
-          addTask("New task", "This task is new", false);
-        }),
+        onPressed: () async {
+          final newTask = await Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+            return const CreateTaskView();
+          }));
+
+          if (newTask != null) {
+            setState(() {
+              tasks.add(newTask);
+            });
+          }
+        },
         tooltip: 'Add Task',
         child: const Icon(Icons.add),
       ),
     );
-  }
-
-  void addTask(String title, String content, bool isDone) {
-    setState(() {
-      tasks.add(Task(title, content, isDone));
-    });
   }
 }
