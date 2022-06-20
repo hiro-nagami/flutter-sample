@@ -37,14 +37,16 @@ class TaskListState extends State<TaskSample> {
   // 新規作成したタスクを一覧へ追加
   addNewTask(Task newTask) {
     newTask.id = _tasks.length + 1;
-    setState(() => _tasks.add(newTask));
+    setState(() {
+      _tasks.add(newTask);
+    });
   }
 
   // 新規作成画面への遷移
   showAddingTaskPage() {
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (context) => CreateTaskView()))
-        .then((newTask) => addNewTask(newTask));
+        .then((newTask) => {if (newTask != null) addNewTask(newTask)});
   }
 
   // 同一IDのタスクを見つけてステータス変更
