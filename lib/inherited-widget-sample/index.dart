@@ -36,8 +36,10 @@ class CreatePageState extends State<CountPage> {
 
   @override
   Widget build(BuildContext context) {
-    // CountContainerに内包されたウィジェットからアクセスできるようになる
-    return CountContainer(
-        state: this, child: Scaffold(appBar: AppBar(), body: const Counter()));
+    return Scaffold(
+        // CountContainerに内包されたウィジェットからアクセスできるようになる
+        body: CountContainer(
+            state: this,
+            child: Scaffold(appBar: AppBar(), body: const Counter())));
   }
 }
