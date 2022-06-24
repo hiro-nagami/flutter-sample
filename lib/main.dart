@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:todo/task-sample/index.dart';
+import 'package:todo/inherited-widget-sample/index.dart';
+// import 'package:todo/task-sample/index.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,6 +16,6 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: const TaskSample());
+        home: const CountPage());
   }
 }
