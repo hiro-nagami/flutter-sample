@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todo/inherited-widget-sample/components/counter.dart';
 
 class CountContainer extends InheritedWidget {
   const CountContainer({Key? key, required this.state, required Widget child})
@@ -37,36 +38,6 @@ class CreatePageState extends State<CountPage> {
   Widget build(BuildContext context) {
     // CountContainerに内包されたウィジェットからアクセスできるようになる
     return CountContainer(
-        state: this,
-        child: Scaffold(appBar: AppBar(), body: const CounterWidget()));
-  }
-}
-
-class CounterWidget extends StatelessWidget {
-  const CounterWidget({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    // CountContainerにアクセスしてCountPageStateを取得している
-    final state = CountContainer.of(context)?.state;
-
-    if (state == null) {
-      return Container(
-          margin: const EdgeInsets.all(3),
-          child: const Text('count is nothing'));
-    }
-
-    // countUp, countDownをcallしてCountPageStateの値を変更する
-    return Center(
-        child: Column(children: [
-      const SizedBox(height: 50),
-      Text('count: ${state.getCount()}'),
-      const SizedBox(height: 10),
-      ElevatedButton(
-          onPressed: () => state.countUp(), child: const Text("CountUp")),
-      const SizedBox(height: 5),
-      ElevatedButton(
-          onPressed: () => state.countDown(), child: const Text("CountDown"))
-    ]));
+        state: this, child: Scaffold(appBar: AppBar(), body: const Counter()));
   }
 }
