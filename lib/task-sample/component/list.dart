@@ -1,23 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:todo/task-sample/models/task.dart';
 
-class TaskListCard extends StatelessWidget {
-  const TaskListCard(this._task, {Key? key}) : super(key: key);
+class TaskList extends StatelessWidget {
+  const TaskList(this.tasks, {Key? key}) : super(key: key);
 
-  final Task _task;
+  final List<Task> tasks;
 
   @override
   Widget build(BuildContext context) {
-    // 完了済みなら打ち消し線を引く
-    var textStyle = _task.isDone
-        ? const TextStyle(decoration: TextDecoration.lineThrough)
-        : null;
+    var cards = tasks.map(createListItem).toList();
+    return ListView(children: cards);
+  }
 
-    var title = Text(_task.title, style: textStyle);
-    var content = Text(_task.content, style: textStyle);
-    var checkIcon = _task.isDone ? const Icon(Icons.done) : null;
+  Widget createListItem(Task task) {
+    bool _isDone = task.isDone;
+    String done = _isDone ? "DONE" : "";
 
     return Card(
-        child: ListTile(title: title, subtitle: content, trailing: checkIcon));
+        child: ListTile(
+            title: Text(task.title),
+            subtitle: Text(task.content),
+            trailing: Text(done)));
   }
 }

@@ -11,50 +11,30 @@ class TaskSample extends StatefulWidget {
 }
 
 class TaskListState extends State<TaskSample> {
-  List<Task> _tasks = [];
+  List<Task> tasks = [];
 
   @override
   Widget build(BuildContext context) {
-    // タップした時にタスクを終了にする
-    var listItems = _tasks
-        .map((task) => InkWell(
-            onTap: (() => chagneState(task.id)), child: TaskListCard(task)))
-        .toList();
-
     return Scaffold(
       appBar: AppBar(
         title: const Text("タスクリスト"),
       ),
-      body: ListView(children: listItems),
+      body: TaskList(tasks),
       floatingActionButton: FloatingActionButton(
-        onPressed: showAddingTaskPage,
+        onPressed: () async {
+          final newTask = await Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+            return const CreateTaskView();
+          }));
+
+          if (newTask != null) {
+            setState(() {
+              tasks.add(newTask);
+            });
+          }
+        },
         tooltip: 'Add Task',
         child: const Icon(Icons.add),
       ),
     );
-  }
-
-  // 新規作成したタスクを一覧へ追加
-  addNewTask(Task newTask) {
-    newTask.id = _tasks.length + 1;
-    setState(() {
-      _tasks.add(newTask);
-    });
-  }
-
-  // 新規作成画面への遷移
-  showAddingTaskPage() {
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => CreateTaskView()))
-        .then((newTask) => {if (newTask != null) addNewTask(newTask)});
-  }
-
-  // 同一IDのタスクを見つけてステータス変更
-  chagneState(int id) {
-    for (var task in _tasks) {
-      if (task.id == id) task.changeState();
-    }
-
-    setState(() => _tasks = _tasks);
   }
 }
