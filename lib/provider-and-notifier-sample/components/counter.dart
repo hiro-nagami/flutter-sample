@@ -12,14 +12,14 @@ class Counter extends StatelessWidget {
 
     // countUp, countDownをcallしてCountDataの値を変更する
     return Center(
-        child: Column(children: [
-      const SizedBox(height: 50),
-      Text('count: ${countData.getCount()}'),
-      const SizedBox(height: 10),
-      ElevatedButton(
+      child: Column(children: [
+        const SizedBox(height: 50),
+        Text('count: ${countData.getCount()}'),
+        const SizedBox(height: 10),
+        ElevatedButton(
           onPressed: () => countData.countUp(), child: const Text("CountUp")),
-      const SizedBox(height: 5),
-      ElevatedButton(
+        const SizedBox(height: 5),
+        ElevatedButton(
           onPressed: () => countData.countDown(), child: const Text("CountDown"))
     ]));
   }
