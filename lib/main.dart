@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todo/inherited-widget-sample/index.dart';
 import 'package:todo/list-and-grid-sample/index.dart';
+import 'package:todo/provider-and-notifier-sample/index.dart';
 import 'package:todo/task-sample/index.dart';
 
 void main() {
@@ -43,9 +44,13 @@ class BasePage extends StatelessWidget {
         description: "ListView / GridView / Table are tested.",
         page: const ListSample()),
     _ListItem(
-        title: "Counter",
+        title: "Counter (InheritedWidget)",
         description: "This is sample for inherited widget.",
         page: const CountPage()),
+    _ListItem(
+        title: "Counter (Provider)",
+        description: "This is sample for provider.",
+        page: const CountPageWithProvider()),
   ];
 
   @override
