@@ -35,13 +35,7 @@ final List<_ListItem> _items = [
     title: "Todo List UI (Provider)",
     description: "Todo list ui sample",
     path: "/task-sample-with-provider",
-    page: (BuildContext context) {
-      return ChangeNotifierProvider<TaskData>.value(
-        value: TaskData(),
-        child: const TodoListWithProviderSample(),
-      );
-    }
-  ),
+    page: (BuildContext context) => const TodoListWithProviderSample()),
 ];
 
 class MyApp extends StatelessWidget {
@@ -50,14 +44,18 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Map<String, WidgetBuilder> routes = {};
-    _items.forEach((item) { routes[item.path] = item.page; });
-    return MaterialApp(
+    for (var item in _items) { routes[item.path] = item.page; }
+
+    return MultiProvider(providers: [
+      ChangeNotifierProvider<TaskData>.value(value: TaskData())
+    ], child: MaterialApp(
         title: 'Flutter Samples',
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
         home: const BasePage(),
         routes: routes
+        )
     );
   }
 }

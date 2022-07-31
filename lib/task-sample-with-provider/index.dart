@@ -11,6 +11,8 @@ class TaskData extends ChangeNotifier {
 
   // 同一IDのタスクを見つけてステータス変更
   void doneTask(Task task) {
+    if (task.isDone) return;
+
     Task oldTask = _tasks.firstWhere((t) => t.id == task.id);
     Task newTask = Task(
       oldTask.id,
@@ -18,7 +20,7 @@ class TaskData extends ChangeNotifier {
       oldTask.content,
       true,
     );
-    _tasks.removeWhere((task) => task.id == task.id);
+    _tasks.removeWhere((t) => t.id == task.id);
     _tasks.add(newTask);
     notifyListeners();
   }
@@ -44,7 +46,7 @@ class TodoList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TaskData taskData = Provider.of<TaskData>(context);
+    final taskData = context.watch<TaskData>();
 
     var listItems = taskData.tasks
         .map((task) => InkWell(

@@ -11,7 +11,7 @@ class CreateTaskView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TaskData taskData = Provider.of<TaskData>(context);
+    final taskData = context.watch<TaskData>();
 
     return Scaffold(
         appBar: AppBar(
@@ -34,8 +34,10 @@ class CreateTaskView extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                   textStyle: const TextStyle(fontSize: 20)),
                 child: const Text("作成"),
-                onPressed: () =>
-                  taskData.addTask(_titleController.text, _contentController.text)
+                onPressed: () {
+                  taskData.addTask(_titleController.text, _contentController.text);
+                  Navigator.pop(context);
+                }
                 ))
           ],
         ));
