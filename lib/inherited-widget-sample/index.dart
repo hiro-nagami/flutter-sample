@@ -17,14 +17,14 @@ class CountContainer extends InheritedWidget {
       context.dependOnInheritedWidgetOfExactType<CountContainer>();
 }
 
-class CountPage extends StatefulWidget {
-  const CountPage({Key? key}) : super(key: key);
+class InheritedWidgetSample extends StatefulWidget {
+  const InheritedWidgetSample({Key? key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => CreatePageState();
 }
 
-class CreatePageState extends State<CountPage> {
+class CreatePageState extends State<InheritedWidgetSample> {
   int _count = 0;
 
   // InheritedWidget経由でアクセスできる
