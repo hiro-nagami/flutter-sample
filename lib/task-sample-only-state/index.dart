@@ -3,14 +3,14 @@ import 'package:todo/task-sample-only-state/models/task.dart';
 import 'package:todo/task-sample-only-state/component/task_list_card.dart';
 import 'package:todo/task-sample-only-state/pages/createTaskView/index.dart';
 
-class TaskSample extends StatefulWidget {
-  const TaskSample({Key? key}) : super(key: key);
+class TaskSampleOnlyState extends StatefulWidget {
+  const TaskSampleOnlyState({Key? key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => TodoListState();
 }
 
-class TodoListState extends State<TaskSample> {
+class TodoListState extends State<TaskSampleOnlyState> {
   final List<Task> _tasks = [];
 
   @override
