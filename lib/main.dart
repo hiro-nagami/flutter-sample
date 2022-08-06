@@ -17,11 +17,11 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<TaskData>.value(value: TaskData())
-      ], 
+      ],
       child: MaterialApp(
         title: 'Flutter Samples',
         theme: ThemeData(primarySwatch: Colors.blue,),
-        initialRoute: '/main',
+        initialRoute: '/',
         routes: routes,
         onGenerateRoute: RouteGenerator().generate,
       ),

@@ -17,7 +17,7 @@ class TodoListState extends State<TaskSampleOnlyState> {
   Widget build(BuildContext context) {
     var listItems = _tasks
         .map((task) => InkWell(
-            onTap: (() => chagneState(task.id)), child: TaskListCard(task)))
+            onTap: (() => changeState(task.id)), child: TaskListCard(task)))
         .toList();
 
     return Scaffold(
@@ -34,13 +34,12 @@ class TodoListState extends State<TaskSampleOnlyState> {
   }
     // 新規作成したタスクを一覧へ追加
   addNewTask(Task newTask) {
-    // 
     newTask.id = _tasks.length + 1;
     setState(() => _tasks.add(newTask));
   }
 
   // 同一IDのタスクを見つけてステータス変更
-  chagneState(int id) {
+  changeState(int id) {
     for (var task in _tasks) {
       if (task.id == id) task.changeState();
     }
