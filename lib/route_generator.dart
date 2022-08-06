@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todo/expand-list-sample/index.dart';
 import 'package:todo/inherited-widget-sample/index.dart';
 import 'package:todo/list-and-grid-sample/index.dart';
 import 'package:todo/main.dart';
@@ -26,27 +27,32 @@ class RouteGenerator {
       title: "List UI",
       description: "ListView / GridView / Table are tested.",
       path: "/list-and-grid-sample",
-      page: (BuildContext context) => const ListAndGridSample()),
+      page: (_) => const ListAndGridSample()),
     RouteItem(
       title: "Counter (InheritedWidget)",
       description: "This is sample for inherited widget.",
       path: "/inherited-widget-sample",
-      page: (BuildContext context) => const InheritedWidgetSample()),
+      page: (_) => const InheritedWidgetSample()),
     RouteItem(
       title: "Counter (Provider)",
       description: "This is sample for provider.",
       path: "/provider-and-notifier-sample",
-      page: (BuildContext context) => const ProviderAndNotifierSample()),
+      page: (_) => const ProviderAndNotifierSample()),
     RouteItem(
       title: "Todo List UI (Only state)",
       description: "Todo list ui sample",
       path: "/task-sample-only-state",
-      page: (BuildContext context) => const TaskSampleOnlyState()),
+      page: (_) => const TaskSampleOnlyState()),
     RouteItem(
       title: "Todo List UI (Provider)",
       description: "Todo list ui sample",
       path: "/task-sample-with-provider",
-      page: (BuildContext context) => const TaskSampleWithProvider()),
+      page: (_) => const TaskSampleWithProvider()),
+    RouteItem(
+      title: "Expanded Sample",
+      description: "Place listview into column that is not fixed height.",
+      path: "/expanded-sample",
+      page: (_) => const ExpandListSample()),
   ];
 
   List<RouteItem> get routes => _items;

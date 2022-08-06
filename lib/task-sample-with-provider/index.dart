@@ -38,7 +38,22 @@ class TaskSampleWithProvider extends StatelessWidget {
   const TaskSampleWithProvider({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) => const TodoList();
+  Widget build(BuildContext context) {
+    var appBar = AppBar(title: const Text("タスクリスト"),);
+
+    return Scaffold(
+        appBar: appBar,
+        body: const TodoList(),
+        // 新規作成画面への遷移
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            var route = MaterialPageRoute(builder: (context) => CreateTaskView());
+            Navigator.of(context).push(route);
+          },
+          tooltip: 'Add Task',
+          child: const Icon(Icons.add),),
+    );
+  }
 }
 
 class TodoList extends StatelessWidget {
@@ -53,18 +68,6 @@ class TodoList extends StatelessWidget {
             onTap: (() => taskData.doneTask(task)), child: TaskListCard(task)))
         .toList();
 
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("タスクリスト"),
-      ),
-      body: ListView(children: listItems),
-      floatingActionButton: FloatingActionButton(
-        // 新規作成画面への遷移
-        onPressed: () => Navigator.of(context)
-          .push(MaterialPageRoute(builder: (context) => CreateTaskView())),
-        tooltip: 'Add Task',
-        child: const Icon(Icons.add),
-      ),
-    );
+    return ListView(children: listItems);
   }
 }
