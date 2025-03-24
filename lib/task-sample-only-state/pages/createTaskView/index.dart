@@ -6,7 +6,7 @@ class CreateTaskView extends StatelessWidget {
   final TextEditingController _titleController = TextEditingController();
   final TextEditingController _contentController = TextEditingController();
 
-  CreateTaskView({Key? key}) : super(key: key);
+  CreateTaskView({super.key});
 
   @override
   Widget build(BuildContext context) {

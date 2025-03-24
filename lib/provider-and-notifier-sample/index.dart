@@ -19,7 +19,7 @@ class CountData extends ChangeNotifier {
 }
 
 class ProviderAndNotifierSample extends StatelessWidget {
-  const ProviderAndNotifierSample({Key? key}) : super(key: key);
+  const ProviderAndNotifierSample({super.key});
 
   @override
   Widget build(BuildContext context) {

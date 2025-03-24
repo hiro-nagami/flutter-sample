@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ExpandListSample extends StatelessWidget {
-  const ExpandListSample({Key? key}) : super(key: key);
+  const ExpandListSample({super.key});
 
   @override
   Widget build(BuildContext context) {

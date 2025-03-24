@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todo/drift-sample/index.dart';
 import 'package:todo/expand-list-sample/index.dart';
 import 'package:todo/inherited-widget-sample/index.dart';
 import 'package:todo/list-and-grid-sample/index.dart';
@@ -28,11 +29,11 @@ class RouteGenerator {
       description: "ListView / GridView / Table are tested.",
       path: "/list-and-grid-sample",
       page: (_) => const ListAndGridSample()),
-    RouteItem(
-      title: "Counter (InheritedWidget)",
-      description: "This is sample for inherited widget.",
-      path: "/inherited-widget-sample",
-      page: (_) => const InheritedWidgetSample()),
+    // RouteItem(
+    //   title: "Counter (InheritedWidget)",
+    //   description: "This is sample for inherited widget.",
+    //   path: "/inherited-widget-sample",
+    //   page: (_) => const InheritedWidgetSample()),
     RouteItem(
       title: "Counter (Provider)",
       description: "This is sample for provider.",
@@ -53,6 +54,11 @@ class RouteGenerator {
       description: "Place listview into column that is not fixed height.",
       path: "/expanded-sample",
       page: (_) => const ExpandListSample()),
+    RouteItem(
+      title: "Expanded Sample",
+      description: "Place listview into column that is not fixed height.",
+      path: "/expanded-sample",
+      page: (_) => const DriftPage()),
   ];
 
   List<RouteItem> get routes => _items;
@@ -69,6 +75,6 @@ class RouteGenerator {
       return item.route();
     }
 
-    return MaterialPageRoute(builder: (BuildContext context) => const Main());
+    return MaterialPageRoute(builder: (BuildContext context) => Main());
   }
 }

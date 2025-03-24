@@ -35,7 +35,7 @@ class TaskData extends ChangeNotifier {
 }
 
 class TaskSampleWithProvider extends StatelessWidget {
-  const TaskSampleWithProvider({Key? key}) : super(key: key);
+  const TaskSampleWithProvider({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +57,7 @@ class TaskSampleWithProvider extends StatelessWidget {
 }
 
 class TodoList extends StatelessWidget {
-  const TodoList({Key? key}) : super(key: key);
+  const TodoList({super.key});
 
   @override
   Widget build(BuildContext context) {
