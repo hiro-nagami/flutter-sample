@@ -7,10 +7,13 @@ import 'package:path/path.dart' as p;
 import 'package:todo/databases/database.dart';
 
 AppDatabase constructDb() {
-  final db = LazyDatabase(() async {
+  return AppDatabase(connectOnNative());
+}
+
+QueryExecutor connectOnNative() {
+  return LazyDatabase(() async {
     final dbFolder = await getApplicationDocumentsDirectory();
     final file = File(p.join(dbFolder.path, 'db.sqlite'));
     return NativeDatabase(file);
   });
-  return AppDatabase(db);
 }

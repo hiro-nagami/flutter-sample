@@ -7,7 +7,7 @@ AppDatabase constructDb() {
   return AppDatabase(connectOnWeb());
 }
 
-DatabaseConnection connectOnWeb() {
+QueryExecutor connectOnWeb() {
   return DatabaseConnection.delayed(Future(() async {
     final result = await WasmDatabase.open(
       databaseName: 'my_app_db', // prefer to only use valid identifiers here
