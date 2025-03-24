@@ -21,29 +21,4 @@ class AppDatabase extends _$AppDatabase {
 
     return database;
   });
-
-  Stream<List<TodoItem>> watchItems() {
-    // final query = select().join([
-    //   leftOuterJoin(categories, categories.id.equalsExp(todoEntries.category))
-    // ]);
-
-    return todoItems.all().watch();
-
-    // if (categoryId != null) {
-    //   query.where(categories.id.equals(categoryId));
-    // } else {
-    //   query.where(categories.id.isNull());
-    // }
-
-    // return query.map((row) {
-    //   return TodoEntryWithCategory(
-    //     entry: row.readTable(todoEntries),
-    //     category: row.readTableOrNull(categories),
-    //   );
-    // }).watch();
-  }
-
-  Future<List<TodoItem>> search(String query) {
-    return select(todoItems).get();
-  }
 }

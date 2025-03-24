@@ -3,12 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:todo/databases/database.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-
 final watchItems = StreamProvider((ref) {
   final database = ref.watch(AppDatabase.provider);
-
-
-  return database.watchItems();
+  return database.todoItems.all().watch();
 });
 
 class DatabaesPage extends ConsumerStatefulWidget {
@@ -23,7 +20,7 @@ class _DatabasePageState extends ConsumerState<DatabaesPage> {
   @override
   Widget build(BuildContext context) {
     final getItems = ref.watch(watchItems);
-    // final getItems = database.todoItems.select().get();
+
     return Scaffold(
       appBar: AppBar(),
       body: getItems.when(
@@ -44,21 +41,7 @@ class _DatabasePageState extends ConsumerState<DatabaesPage> {
           alignment: Alignment.center,
           child: CircularProgressIndicator(),
         )
-      )
-        // builder: (context, snapshot) {
-        //   if (snapshot.hasData && snapshot.data!.isNotEmpty) {
-        //     final results = snapshot.data!;
-
-        //     return Flex(
-        //       direction: Axis.vertical,
-        //       children: results.map((r) {
-        //       return Text(r.title);
-        //     }).toList());
-        //   }
-
-        //   
-        // },
-      // )
+      ),
     );
   }
 
