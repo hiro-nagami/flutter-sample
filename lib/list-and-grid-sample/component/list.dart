@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:todo/task-sample/models/task.dart';
+import 'package:todo/list-and-grid-sample/models/item.dart';
 
 class TaskListCard extends StatelessWidget {
-  const TaskListCard(this._task, {Key? key}) : super(key: key);
+  const TaskListCard(this._item, {Key? key}) : super(key: key);
 
-  final Task _task;
+  final Item _item;
 
   @override
   Widget build(BuildContext context) {
     // 完了済みなら打ち消し線を引く
-    var textStyle = _task.isDone
+    var textStyle = _item.isDone
         ? const TextStyle(decoration: TextDecoration.lineThrough)
         : null;
 
-    var title = Text(_task.title, style: textStyle);
-    var content = Text(_task.content, style: textStyle);
-    var checkIcon = _task.isDone ? const Icon(Icons.done) : null;
+    var title = Text(_item.title, style: textStyle);
+    var content = Text(_item.content, style: textStyle);
+    var checkIcon = _item.isDone ? const Icon(Icons.done) : null;
 
     return Card(
         child: ListTile(title: title, subtitle: content, trailing: checkIcon));

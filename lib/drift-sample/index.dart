@@ -8,40 +8,42 @@ final watchItems = StreamProvider((ref) {
   return database.todoItems.all().watch();
 });
 
-class DatabaesPage extends ConsumerStatefulWidget {
-  const DatabaesPage({super.key});
+class DriftPage extends ConsumerStatefulWidget {
+  const DriftPage({super.key});
 
   @override
-  ConsumerState<DatabaesPage> createState() => _DatabasePageState();
+  ConsumerState<DriftPage> createState() => _DatabasePageState();
 }
 
-class _DatabasePageState extends ConsumerState<DatabaesPage> {
+class _DatabasePageState extends ConsumerState<DriftPage> {
   
   @override
   Widget build(BuildContext context) {
     final getItems = ref.watch(watchItems);
 
-    return Scaffold(
-      appBar: AppBar(),
-      body: getItems.when(
-        data: (items) {
-          return Flex(
-            direction: Axis.vertical,
-            children: [
-              TextButton(onPressed: _addTodoItem, child: Text('Add to Drift')),
-              ...items.map((r) => Text(r.title)),
-            ]
-          );
-        },
-        error: (e, s) {
-          debugPrintStack(label: e.toString(), stackTrace: s);
-          return const Text('An error has occured');
-        },
-        loading: () => const Align(
-          alignment: Alignment.center,
-          child: CircularProgressIndicator(),
-        )
-      ),
+    return ProviderScope(
+      child: Scaffold(
+        appBar: AppBar(),
+        body: getItems.when(
+          data: (items) {
+            return Flex(
+              direction: Axis.vertical,
+              children: [
+                TextButton(onPressed: _addTodoItem, child: Text('Add to Drift')),
+                ...items.map((r) => Text(r.title)),
+              ]
+            );
+          },
+          error: (e, s) {
+            debugPrintStack(label: e.toString(), stackTrace: s);
+            return const Text('An error has occured');
+          },
+          loading: () => const Align(
+            alignment: Alignment.center,
+            child: CircularProgressIndicator(),
+          )
+        ),
+      )
     );
   }
 

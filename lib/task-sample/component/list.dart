@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:todo/task-sample/models/task.dart';
+import 'package:todo/task-sample-only-state/models/task.dart';
 
 class TaskList extends StatelessWidget {
   const TaskList(this.tasks, {super.key});

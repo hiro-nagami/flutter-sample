@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todo/task-sample/component/list.dart';
-import 'package:todo/task-sample/models/task.dart';
-import 'package:todo/task-sample/pages/createTaskView/index.dart';
+import 'package:todo/task-sample-only-state/models/task.dart';
+import 'package:todo/task-sample-only-state/pages/createTaskView/index.dart';
 
 class TaskSample extends StatefulWidget {
   const TaskSample({super.key});
@@ -23,7 +23,7 @@ class TaskListState extends State<TaskSample> {
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           final newTask = await Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-            return const CreateTaskView();
+            return CreateTaskView();
           }));
 
           if (newTask != null) {

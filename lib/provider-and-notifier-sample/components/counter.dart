@@ -8,7 +8,7 @@ class Counter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // BuildContextを経由してCountDataを取得している
-    final countData = Provider.of<CountData>(context);
+    final countData = context.watch<CountData>();
 
     // countUp, countDownをcallしてCountDataの値を変更する
     return Center(

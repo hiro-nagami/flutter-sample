@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:todo/databases/connection/shared.dart';
 import 'package:todo/drift-sample/index.dart';
 import 'package:todo/inherited-widget-sample/index.dart';
 import 'package:todo/list-and-grid-sample/index.dart';
 import 'package:todo/provider-and-notifier-sample/index.dart';
 import 'package:todo/task-sample/index.dart';
+import 'package:provider/provider.dart';
+import 'package:todo/route_generator.dart';
+import 'package:todo/task-sample-with-provider/index.dart';
 
 final database = constructDb();
 void main() {
@@ -17,14 +19,21 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ProviderScope(
-      child: MaterialApp(
-        title: 'Flutter Samples',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
+    Map<String, WidgetBuilder> routes = {};
+
+    return 
+      MultiProvider(
+        providers: [
+          ChangeNotifierProvider<TaskData>.value(value: TaskData())
+        ],
+        child: MaterialApp(
+          title: 'Flutter Samples',
+          theme: ThemeData(primarySwatch: Colors.blue,),
+          initialRoute: '/',
+          routes: routes,
+          onGenerateRoute: RouteGenerator().generate,
         ),
-        home: BasePage())
-    );
+      );
   }
 }
 
@@ -37,48 +46,30 @@ class _ListItem {
       {required this.title, required this.description, required this.page});
 }
 
-class BasePage extends StatelessWidget {
-  BasePage({super.key});
-
-  final List<_ListItem> _items = [
-    _ListItem(
-        title: "Todo List UI",
-        description: "Todo list ui sample",
-        page: const TaskSample()),
-    _ListItem(
-        title: "List UI",
-        description: "ListView / GridView / Table are tested.",
-        page: const ListSample()),
-    _ListItem(
-        title: "Counter (InheritedWidget)",
-        description: "This is sample for inherited widget.",
-        page: const CountPage()),
-    _ListItem(
-        title: "Counter (Provider)",
-        description: "This is sample for provider.",
-        page: const CountPageWithProvider()),
-    _ListItem(
-        title: "Drift (Provider)",
-        description: "This is sample for provider.",
-        page: const DatabaesPage()),
-  ];
-
+class Main extends StatelessWidget {
+  const Main({super.key});
+  
   @override
   Widget build(BuildContext context) {
-    final navigations = _items.map((item) {
+    final navigation = RouteGenerator().routes.map((item) {
       return InkWell(
+          onTap: () => Navigator.of(context).pushNamed(item.path),
           child: ListTile(
             title: Text(item.title),
             subtitle: Text(item.description),
-          ),
-          onTap: () => Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => item.page),
-              ));
+          )
+      );
     }).toList();
 
     return Scaffold(
       appBar: AppBar(),
-      body: ListView(children: navigations),
+      body: ListView(children: navigation),
     );
   }
 }
+
+  // @override
+  // Widget build(BuildContext context) {
+  //   // TODO: implement build
+  //   throw UnimplementedError();
+  // }

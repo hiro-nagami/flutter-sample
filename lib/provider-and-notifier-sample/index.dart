@@ -18,8 +18,8 @@ class CountData extends ChangeNotifier {
   getCount() => _count;
 }
 
-class CountPageWithProvider extends StatelessWidget {
-  const CountPageWithProvider({Key? key}) : super(key: key);
+class ProviderAndNotifierSample extends StatelessWidget {
+  const ProviderAndNotifierSample({super.key});
 
   @override
   Widget build(BuildContext context) {
