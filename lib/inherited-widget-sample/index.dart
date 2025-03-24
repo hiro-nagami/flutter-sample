@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:todo/inherited-widget-sample/components/counter.dart';
 
 class CountContainer extends InheritedWidget {
-  const CountContainer({Key? key, required this.state, required Widget child})
-      : super(key: key, child: child);
+  const CountContainer({super.key, required this.state, required super.child});
 
   final CreatePageState state;
 
@@ -18,7 +17,7 @@ class CountContainer extends InheritedWidget {
 }
 
 class CountPage extends StatefulWidget {
-  const CountPage({Key? key}) : super(key: key);
+  const CountPage({super.key});
 
   @override
   State<StatefulWidget> createState() => CreatePageState();

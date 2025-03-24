@@ -4,7 +4,7 @@ import 'package:todo/task-sample/models/task.dart';
 import 'package:todo/task-sample/pages/createTaskView/index.dart';
 
 class TaskSample extends StatefulWidget {
-  const TaskSample({Key? key}) : super(key: key);
+  const TaskSample({super.key});
 
   @override
   State<StatefulWidget> createState() => TaskListState();

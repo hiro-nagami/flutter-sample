@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:todo/inherited-widget-sample/index.dart';
 
 class Counter extends StatelessWidget {
-  const Counter({Key? key}) : super(key: key);
+  const Counter({super.key});
 
   @override
   Widget build(BuildContext context) {

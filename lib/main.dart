@@ -1,24 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:todo/databases/connection/shared.dart';
+import 'package:todo/drift-sample/index.dart';
 import 'package:todo/inherited-widget-sample/index.dart';
 import 'package:todo/list-and-grid-sample/index.dart';
 import 'package:todo/provider-and-notifier-sample/index.dart';
 import 'package:todo/task-sample/index.dart';
 
+final database = constructDb();
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return ProviderScope(
+      child: MaterialApp(
         title: 'Flutter Samples',
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: BasePage());
+        home: BasePage())
+    );
   }
 }
 
@@ -32,7 +38,7 @@ class _ListItem {
 }
 
 class BasePage extends StatelessWidget {
-  BasePage({Key? key}) : super(key: key);
+  BasePage({super.key});
 
   final List<_ListItem> _items = [
     _ListItem(
@@ -51,6 +57,10 @@ class BasePage extends StatelessWidget {
         title: "Counter (Provider)",
         description: "This is sample for provider.",
         page: const CountPageWithProvider()),
+    _ListItem(
+        title: "Drift (Provider)",
+        description: "This is sample for provider.",
+        page: const DatabaesPage()),
   ];
 
   @override

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:todo/task-sample/models/task.dart';
 
 class TaskList extends StatelessWidget {
-  const TaskList(this.tasks, {Key? key}) : super(key: key);
+  const TaskList(this.tasks, {super.key});
 
   final List<Task> tasks;
 
@@ -13,8 +13,8 @@ class TaskList extends StatelessWidget {
   }
 
   Widget createListItem(Task task) {
-    bool _isDone = task.isDone;
-    String done = _isDone ? "DONE" : "";
+    bool isDone = task.isDone;
+    String done = isDone ? "DONE" : "";
 
     return Card(
         child: ListTile(

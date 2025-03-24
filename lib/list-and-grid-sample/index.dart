@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ListSample extends StatelessWidget {
-  const ListSample({Key? key}) : super(key: key);
+  const ListSample({super.key});
 
   @override
   Widget build(BuildContext context) {
